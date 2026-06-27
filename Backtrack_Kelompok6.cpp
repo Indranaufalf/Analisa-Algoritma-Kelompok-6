@@ -52,8 +52,7 @@ void subsetSum(int index, int total) {
 
 int main() {
     cout << "========================================" << endl;
-    cout << "  SUBSET SUM - PENGELOLAAN ANGGARAN    " << endl;
-    cout << "  Kelompok 6 | DAA | UPNVY 2024/2025   " << endl;
+    cout << "           PENGELOLAAN ANGGARAN    " << endl;
     cout << "========================================" << endl;
 
     n = 7;
