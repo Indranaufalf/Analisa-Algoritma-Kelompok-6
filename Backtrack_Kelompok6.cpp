@@ -3,14 +3,10 @@
 using namespace std;
 
 const int MAX = 20;
-
 string namaBarang[MAX];
 int harga[MAX];
-int n;          
-int budget;     
-int solusiCount = 0;
-int callCount   = 0;
-
+int n, budget;
+int solusiCount = 0, callCount = 0;
 bool dipilih[MAX];
 
 void printSolusi() {
@@ -26,22 +22,12 @@ void printSolusi() {
     cout << "=> Total: Rp" << total;
 }
 
-bool bisaLanjut(int index, int totalSaatIni) {
-    if (totalSaatIni > budget) return false;
-    return true;
-}
-
 void subsetSum(int index, int total) {
     callCount++;
 
-    if (total == budget) {
-        printSolusi();
-        return;
-    }
-
-    if (index == n) return;
-
-    if (total > budget) return;
+    if (total == budget) { printSolusi(); return; }
+    if (index == n)       return;
+    if (total > budget)   return;
 
     dipilih[index] = true;
     subsetSum(index + 1, total + harga[index]);
@@ -51,10 +37,6 @@ void subsetSum(int index, int total) {
 }
 
 int main() {
-    cout << "========================================" << endl;
-    cout << "           PENGELOLAAN ANGGARAN    " << endl;
-    cout << "========================================" << endl;
-
     n = 7;
     namaBarang[0] = "Sabun";        harga[0] = 10000;
     namaBarang[1] = "Shampo";       harga[1] = 15000;
@@ -63,9 +45,11 @@ int main() {
     namaBarang[4] = "Deterjen";     harga[4] = 20000;
     namaBarang[5] = "Sabun Cuci";   harga[5] = 18000;
     namaBarang[6] = "Tisu";         harga[6] = 7000;
-
     budget = 35000;
 
+    cout << "========================================" << endl;
+    cout << "          PENGELOLAAN ANGGARAN    " << endl;
+    cout << "========================================" << endl;
     cout << "\n[DATA BARANG]" << endl;
     cout << "-------------------------------------" << endl;
     for (int i = 0; i < n; i++)
@@ -73,18 +57,14 @@ int main() {
              << "\t: Rp" << harga[i] << endl;
     cout << "-------------------------------------" << endl;
     cout << "Budget: Rp" << budget << endl;
-
     cout << "\n[MENCARI KOMBINASI...]" << endl;
 
     subsetSum(0, 0);
 
     cout << "\n\n========================================" << endl;
-    cout << "Total solusi ditemukan : " << solusiCount << endl;
-    cout << "Total pemanggilan rekursi: " << callCount << endl;
+    cout << "Total solusi ditemukan  : " << solusiCount << endl;
+    cout << "Total pemanggilan rekursi: " << callCount  << endl;
     cout << "========================================" << endl;
-
-    if (solusiCount == 0)
-        cout << "Tidak ada kombinasi barang yang pas dengan budget." << endl;
 
     return 0;
 }
